@@ -16,6 +16,17 @@ export function createApp({ clock } = {}) {
     res.json(store.tasks);
   });
 
+  app.get('/api/activity', (req, res) => {
+    const { limit } = req.query;
+    if (limit === undefined) {
+      return res.json(store.listActivity());
+    }
+    if (typeof limit !== 'string' || !/^[1-9]\d*$/.test(limit)) {
+      return res.status(400).json({ error: `Invalid limit: ${limit}` });
+    }
+    res.json(store.listActivity(Number(limit)));
+  });
+
   app.patch('/api/tasks/:id', (req, res) => {
     const { actorId = 'u1', ...changes } = req.body ?? {};
     if ('status' in changes && !STATUSES.includes(changes.status)) {
