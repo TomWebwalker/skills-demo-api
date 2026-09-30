@@ -29,5 +29,11 @@ export function createStore({ clock = () => new Date() } = {}) {
     return task;
   }
 
-  return { users, tasks, activity, updateTask };
+  // Newest event first; `limit` caps the count, omitted returns everything.
+  function listActivity(limit) {
+    const newestFirst = [...activity].reverse();
+    return limit === undefined ? newestFirst : newestFirst.slice(0, limit);
+  }
+
+  return { users, tasks, activity, updateTask, listActivity };
 }
