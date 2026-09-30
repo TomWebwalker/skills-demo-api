@@ -1,0 +1,22 @@
+{
+  "name": "angular-jam-demo-api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Demo API for the Angular Jam talk: tasks, users, and a missing activity feed (#42)",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "vitest run"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "supertest": "^7.3.0",
+    "vitest": "^5.0.3"
+  }
+}
